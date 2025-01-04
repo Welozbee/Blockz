@@ -1,0 +1,74 @@
+#mainBody {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    background: rgb(0, 0, 0);
+    background: linear-gradient(150deg, rgba(0, 0, 0, 1) 0%, rgba(23, 23, 23, 1) 100%);
+
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+    height: 100%;
+    overflow: auto;
+    border-radius: 10px;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(36, 36, 36);
+    border-radius: 5px;
+}
+
+.blockCard {
+    width: calc(25% - 35px);
+    height: fit-content;
+}
+
+.blockInfo {
+    display: flex;
+    flex: row;
+    width: 100%;
+    gap: 10px;
+
+    label {
+        font-weight: bold;
+        height: 100%;
+        color: gray;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+
+        color: gray;
+    }
+}
+
+mat-card {
+    background: rgb(36, 36, 36);
+    border: none;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 4px 10px;
+}
+
+.imageCard {
+    aspect-ratio: 1;
+    width: calc(100% - 100px);
+    margin: 20px auto;
+}
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

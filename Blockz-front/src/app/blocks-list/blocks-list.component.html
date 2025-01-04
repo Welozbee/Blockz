@@ -1,0 +1,98 @@
+<div id="mainBody">
+    <mat-card class="blockCard" appearance="outlined" *ngFor="let block of blocks">
+        <mat-card-header>
+            <mat-card-title style="color: gray;font-weight: bolder;">{{ block.displayName }}</mat-card-title>
+        </mat-card-header>
+
+        <!-- Image du bloc -->
+        <img mat-card-image src="assets/404.png" alt="{{ block.displayName }}" class="imageCard" />
+
+        <mat-card-content>
+            <!-- Affichage des propriétés du bloc -->
+            <div class="blockInfo">
+                <label>ID :</label>
+                <p>{{ block.id }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Nom :</label>
+                <p>{{ block.name }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Nom Affiché :</label>
+                <p>{{ block.displayName }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Durabilité (Hardness) :</label>
+                <p>{{ block.hardness }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Résistance :</label>
+                <p>{{ block.resistance }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Taille du Stack :</label>
+                <p>{{ block.stackSize }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Creusable (Diggable) :</label>
+                <p>{{ block.diggable ? 'Oui' : 'Non' }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Matériau :</label>
+                <p>{{ block.material }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Transparent :</label>
+                <p>{{ block.transparent ? 'Oui' : 'Non' }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Lumière Émise :</label>
+                <p>{{ block.emitLight }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Filtrage de Lumière :</label>
+                <p>{{ block.filterLight }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>État par Défaut :</label>
+                <p>{{ block.defaultState }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>ID d'État Minimum :</label>
+                <p>{{ block.minStateId }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>ID d'État Maximum :</label>
+                <p>{{ block.maxStateId }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>États :</label>
+                <p>{{ block.states.length > 0 ? block.states : 'Aucun' }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Drops :</label>
+                <p>{{ block.drops.length > 0 ? block.drops : 'Aucun' }}</p>
+            </div>
+
+            <div class="blockInfo">
+                <label>Boîte de Collision (Bounding Box) :</label>
+                <p>{{ block.boundingBox }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
