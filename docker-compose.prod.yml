@@ -5,7 +5,6 @@ networks:
     
 # Définition des services (containers pour faire simple (me tuez pas Mme))
 services:
-  
   # Service Angular (Front-end)
   front-end:
     build:

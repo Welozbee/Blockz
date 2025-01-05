@@ -1,8 +1,17 @@
 # Définition du réseau
 # Ce réseau va permettre aux conteneurs de communiquer entre eux
 networks:
-  blockz_networks:
+  blockz_network:
 services:
+  back-end:
+    build:
+      context: ./Blockz-back
+    environment:
+        - ENV=DEV
+    ports:
+        - 8000:8000
+    networks:
+        - blockz_network
   front-end:
     build:
       context: ./Blockz-front
@@ -10,4 +19,6 @@ services:
     ports:
       - "4200:4200"
     networks:
-      - blockz_networks
+      - blockz_network
+    depends_on: 
+      - back-end

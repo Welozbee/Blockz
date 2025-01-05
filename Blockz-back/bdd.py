@@ -12,20 +12,20 @@ def get_connection():
         insert_data(conn)
     else:
         conn = mysql.connector.connect(
-            host=os.getenv("DB_HOST"),
-            user=os.getenv("DB_USER"),
-            passwd=os.getenv("DB_PASSWORD"),
-            port=os.getenv("DB_PORT"),
+            host="localhost",
+            user="root",
+            passwd="root",
+            port="3300",
         )
 
         create_tables(conn)
 
         conn = mysql.connector.connect(
-            host=os.getenv("DB_HOST"),
-            user=os.getenv("DB_USER"),
-            passwd=os.getenv("DB_PASSWORD"),
-            port=os.getenv("DB_PORT"),
-            database=os.getenv("DB_DATABASE"),
+            host="localhost",
+            user="root",
+            passwd="root",
+            port="3300",
+            database="Blockz",
         )
         insert_data(conn)
     return conn
