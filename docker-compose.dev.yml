@@ -1,0 +1,12 @@
+# Définition du réseau
+# Ce réseau va permettre aux conteneurs de communiquer entre eux
+networks:
+  blockz_networks:
+services:
+  front-end:
+    build:
+      context: ./Blockz-front
+    ports:
+      - "4200:8000"
+    networks:
+      - blockz_networks

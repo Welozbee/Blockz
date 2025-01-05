@@ -1,0 +1,3 @@
+# Fichiers qui seront ignorés pour le COPY du dockerfile
+node_modules
+dist
