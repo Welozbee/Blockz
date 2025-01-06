@@ -2,29 +2,27 @@
 # Ce réseau va permettre aux conteneurs de communiquer entre eux
 networks:
   blockz_network:
-volumes:
-  node_modules:
 services:
+  # Définition du service de l'api
   back-end:
     build:
       context: ./Blockz-back
-      target: python
+      target: python # Faire appel à la partie du Dockerfile qui lancera l'api
     environment:
-        - ENV=DEV
+        - ENV=DEV # Variable pour que le back sache quel env il doit lancer
     ports:
-        - 8000:8000
+        - 8000:8000 # Port Forwarding
     networks:
-        - blockz_network
+        - blockz_network 
   front-end:
     build:
       context: ./Blockz-front
-      target: dev
+      target: dev # Faire appel à la partie du Dockerfile qui lance l'application angular en dev
     ports:
-      - "4200:4200"
+      - "4200:4200" # Port Forwarding
     networks:
       - blockz_network
-    volumes:
-      - node_modules:/app/node_modules
+    volumes: # Bind qui permettra le changement des fichiers en réel 
       - type: bind
         source: ./Blockz-front
         target: /app

@@ -5,37 +5,45 @@ networks:
     
 # Définition des services (containers pour faire simple (me tuez pas Mme))
 services:
+  
+  # Service du serveur MySQL
   mysql:
     build:
       context: ./Blockz-back
       target: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root # Variable d'environement pour le conteneur mysql
     ports:
-      - 3306:3306
+      - 3306:3306 # Port Forwarding
     networks:
       - blockz_network
+    
+    # Test poour regarder si le conteneur s'est bien lancé
     healthcheck:
         test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
         interval: 10s
         timeout: 5s
         retries: 5
   
+  # Service de l'api Rest
   back-end:
     build:
       context: ./Blockz-back
-      target: python
+      target: python # Lancer la partie du Dockerfile qui s'occupe de lancer l'api
+    # Condition pour que le service se lance seulement quand le service mysql s'est lancé proprement
     depends_on: 
         mysql:
           condition: service_healthy
+    # Variables d'environement
     environment:
         - ENV=PROD
         - MYSQL_ROOT_PASSWORD=root
     ports:
-        - 8000:8000
+        - 8000:8000 # Port forwarding
     networks:
         - blockz_network
-    
+  
+  # Service du site web
   front-end:
     build:
       context: ./Blockz-front 
