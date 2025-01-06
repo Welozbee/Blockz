@@ -2,6 +2,9 @@
 # Ce réseau va permettre aux conteneurs de communiquer entre eux
 networks:
   blockz_network:
+volumes:
+  # Volume pour sauvegarder les nodes_modules
+  node_modules:
 services:
   # Définition du service de l'api
   back-end:
@@ -22,7 +25,9 @@ services:
       - "4200:4200" # Port Forwarding
     networks:
       - blockz_network
-    volumes: # Bind qui permettra le changement des fichiers en réel 
+    volumes: 
+      - node_modules:/app/node_modules
+      # Bind qui permettra le changement des fichiers en réel
       - type: bind
         source: ./Blockz-front
         target: /app
