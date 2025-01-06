@@ -1,4 +1,4 @@
-![Logo du projet](Blockz-front\src\assets\Blockz.png)
+![Logo du projet](Blockz-front/src/assets/Blockz.png)
 
 
 ## Table des Matières
