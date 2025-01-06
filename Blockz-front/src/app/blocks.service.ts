@@ -1,32 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Block } from './blocks';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BlocksService {
-  blocks: Block[] = [];
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  getBlocks(): Observable<Block[]> {
+    return this.http.get<Block[]>('http://localhost:8000/blocks');
+  }
 
-  getBlocks(): Block[] {
-    let i = 0;
-    while (i <= 50) {
-      i++;
-      this.blocks.push(new Block({
-        id: 0,
-        name: 'air',
-        displayName: 'Air',
-        hardness: 0.0,
-        resistance: 0.0,
-        stackSize: 64,
-        diggable: false,
-        material: 'default',
-        transparent: true,
-        emitLight: 0,
-      }),);
-    }
-
-    return this.blocks;
+  getBlockById(id: number): Observable<Block> {
+    return this.http.get<Block>(`http://localhost:8000/block/${id}`);
   }
 }

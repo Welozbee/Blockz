@@ -2,6 +2,8 @@
 # Ce réseau va permettre aux conteneurs de communiquer entre eux
 networks:
   blockz_network:
+volumes:
+  node_modules:
 services:
   back-end:
     build:
@@ -20,5 +22,8 @@ services:
       - "4200:4200"
     networks:
       - blockz_network
-    depends_on: 
-      - back-end
+    volumes:
+      - node_modules:/app/node_modules
+      - type: bind
+        source: ./Blockz-front
+        target: /app

@@ -3,7 +3,7 @@
 # Utiliser l'image officielle de Node.js comme image parente
 FROM node:22 AS base
 # Définir le répertoire de travail
-WORKDIR /usr/src
+WORKDIR /app
 # Copier package.json
 COPY . .
 # Installer les dépendances de l'application
@@ -17,7 +17,7 @@ FROM base AS dev
 # Exposer le port sur lequel l'application va s'éxecuter
 EXPOSE 4200
 # Exécuter l'application
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["ng", "serve","--poll", "2000", "--host", "0.0.0.0"]
 
 # ------- Build -------
 
@@ -33,7 +33,7 @@ FROM nginx:alpine AS prod
 # Supprimer les fichier inutiles
 RUN rm /usr/share/nginx/html/*
 # Depuis le stage build copier la sortie du build et l'utiliser
-COPY --from=build /usr/src/dist/browser /usr/share/nginx/html
+COPY --from=build /app/dist/browser /usr/share/nginx/html
 # Exposer le port sur lequel l'application va s'éxecuter
 EXPOSE 80
 # Exécuter l'application

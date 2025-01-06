@@ -18,9 +18,13 @@ export class BlocksListComponent implements OnInit {
     private blocksService: BlocksService,
   ) { }
 
-  blocks!: Block[];
+  blocks: Block[] = [];
 
   ngOnInit(): void {
-    this.blocks = this.blocksService.getBlocks();
+    this.blocksService.getBlocks().subscribe({
+      next: (res: Block[]) => {
+        this.blocks = res;
+      }
+    });
   }
 }

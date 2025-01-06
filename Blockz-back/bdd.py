@@ -11,23 +11,18 @@ def get_connection():
         create_tables(conn)
         insert_data(conn)
     else:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            passwd="root",
-            port="3300",
-        )
+            # Connexion à MySQL
+            conn = mysql.connector.connect(
+                host="mysql",
+                user="root",
+                passwd=os.getenv("MYSQL_ROOT_PASSWORD"),
+                port="3306",
+            )
+            create_tables(conn)  # Crée les tables au besoin
 
-        create_tables(conn)
-
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            passwd="root",
-            port="3300",
-            database="Blockz",
-        )
-        insert_data(conn)
+            # Connexion avec la base de données
+            conn.database = "blockz"
+            insert_data(conn)
     return conn
 
 # Ouvre le fichier create_bdd_prod.sql et execute le fichier pour créer les tables

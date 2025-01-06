@@ -1,16 +1,46 @@
 # Définition du réseau
 # Ce réseau va permettre aux conteneurs de communiquer entre eux
 networks:
-  blockz_networks:
+  blockz_network:
     
 # Définition des services (containers pour faire simple (me tuez pas Mme))
 services:
-  # Service Angular (Front-end)
+  mysql:
+    build:
+      context: ./Blockz-back
+      target: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    networks:
+      - blockz_network
+    healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+  
+  back-end:
+    build:
+      context: ./Blockz-back
+      target: python
+    depends_on: 
+        mysql:
+          condition: service_healthy
+    environment:
+        - ENV=PROD
+        - MYSQL_ROOT_PASSWORD=root
+    ports:
+        - 8000:8000
+    networks:
+        - blockz_network
+    
   front-end:
     build:
-      context: ./Blockz-front # Contexte d'éxecution du build du dockerfile
-      target: prod # Fait appel au stage prod qui va lancer le site 
+      context: ./Blockz-front 
+      target: prod
     ports:
       - "80:80" # Port-forwarding du port hôte 80 vers le port 80 du container
     networks:
-      - blockz_networks # Attache notre network au service
+      - blockz_network # Attache notre network au service
