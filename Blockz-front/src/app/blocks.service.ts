@@ -17,11 +17,11 @@ export class BlocksService {
   }
 
   createBlock(block: Block): Observable<Block> {
-    return this.http.post<Block>('/block', block, { headers: this.getAuthHeaders() });
+    return this.http.post<Block>('/block', block, { headers: this.getJsonHeaders() });
   }
 
   updateBlock(id: number, block: Block): Observable<Block> {
-    return this.http.put<Block>(`/block/${id}`, block, { headers: this.getAuthHeaders() });
+    return this.http.put<Block>(`/block/${id}`, block, { headers: this.getJsonHeaders() });
   }
 
   uploadBlockImage(id: number, file: File): Observable<Block> {
@@ -33,5 +33,9 @@ export class BlocksService {
   private getAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     return token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+  }
+
+  private getJsonHeaders(): HttpHeaders {
+    return this.getAuthHeaders().set('Content-Type', 'application/json');
   }
 }

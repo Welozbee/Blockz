@@ -102,7 +102,7 @@ export class BlockEditorComponent {
     }
 
     this.isSaving = true;
-    const payload = new Block({
+    const payload: Block = {
       id: Number(this.form.id),
       name: this.form.name.trim(),
       displayName: this.form.displayName.trim(),
@@ -112,8 +112,9 @@ export class BlockEditorComponent {
       diggable: Boolean(this.form.diggable),
       material: this.form.material.trim(),
       transparent: Boolean(this.form.transparent),
-      emitLight: Number(this.form.emitLight)
-    });
+      emitLight: Number(this.form.emitLight),
+      imagePath: this.form.imagePath ?? null
+    };
 
     const request = this.mode === 'create'
       ? this.blocksService.createBlock(payload)
