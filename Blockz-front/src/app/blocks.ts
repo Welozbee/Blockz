@@ -9,6 +9,7 @@ export class Block {
     material: string;
     transparent: boolean;
     emitLight: number;
+    imagePath?: string | null;
 
     constructor(data: Partial<Block>) {
         this.id = data.id ?? 0;
@@ -21,5 +22,6 @@ export class Block {
         this.material = data.material ?? 'default';
         this.transparent = data.transparent ?? false;
         this.emitLight = data.emitLight ?? 0;
+        this.imagePath = data.imagePath ?? null;
     }
 }

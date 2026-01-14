@@ -1,21 +1,26 @@
+:host {
+    display: block;
+    flex: 1;
+    min-height: 0;
+}
+
 #mainBody {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 26px;
 
-    background: rgb(0, 0, 0);
-    background: linear-gradient(150deg, rgba(0, 0, 0, 1) 0%, rgba(23, 23, 23, 1) 100%);
-
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+    background: rgba(16, 19, 24, 0.7);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 30px var(--shadow);
     height: 100%;
     overflow: auto;
-    border-radius: 10px;
-    justify-content: space-around;
-    gap: 20px;
+    overflow-x: hidden;
+    border-radius: 16px;
+    padding: 18px;
+    align-content: start;
 }
 
 ::-webkit-scrollbar {
@@ -27,48 +32,100 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(36, 36, 36);
+    background: var(--surface);
     border-radius: 5px;
 }
 
 .blockCard {
-    width: calc(25% - 35px);
+    width: 100%;
     height: fit-content;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 2 / 1.2;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.blockCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px var(--shadow);
+}
+
+.blockCardSelected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.35);
+}
+
+mat-card {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 22px var(--shadow);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blockCardLayout {
+    display: flex;
+    height: 100%;
+    gap: 10px;
+}
+
+.blockMedia {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.imageCard {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+}
+
+.blockContent {
+    width: 67%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.blockTitle {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: var(--text-100);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    text-align: left;
 }
 
 .blockInfo {
     display: flex;
-    flex: row;
-    width: 100%;
     gap: 10px;
-
-    label {
-        font-weight: bold;
-        height: 100%;
-        color: gray;
-    }
-
-    p {
-        margin: 0;
-        padding: 0;
-
-        color: gray;
-    }
+    align-items: baseline;
 }
 
-mat-card {
-    background: rgb(36, 36, 36);
-    border: none;
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 4px 10px;
+.blockInfo label {
+    flex: 0 0 140px;
+    color: var(--text-300);
+    font-weight: bold;
 }
 
-.imageCard {
-    aspect-ratio: 1;
-    width: calc(100% - 100px);
-    margin: 20px auto;
-}
-mat-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.blockInfo p {
+    flex: 1;
+    margin: 0;
+    color: var(--text-100);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

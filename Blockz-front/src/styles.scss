@@ -1,4 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  color-scheme: dark;
+  --bg-900: #0b0c0f;
+  --bg-800: #12151a;
+  --bg-700: #1a1f26;
+  --surface: #20262f;
+  --surface-2: #262d38;
+  --text-100: #e6e6e6;
+  --text-300: #b6b6b6;
+  --accent: #58a6ff;
+  --accent-2: #7ee787;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+html, body {
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(88, 166, 255, 0.08), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(126, 231, 135, 0.06), transparent 40%),
+    linear-gradient(160deg, var(--bg-900) 0%, var(--bg-800) 60%, var(--bg-700) 100%);
+  overflow: hidden;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: var(--text-100);
+}

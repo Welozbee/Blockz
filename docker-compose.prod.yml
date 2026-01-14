@@ -39,6 +39,10 @@ services:
         - ENV=PROD
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DB=Blockz
+        - ADMIN_USERNAME=admin
+        - ADMIN_PASSWORD=admin123
+        - JWT_SECRET=prod-jwt-secret
+        - JWT_EXPIRES_MINUTES=60
     ports:
         - 8000:8000 # Port forwarding
     networks:

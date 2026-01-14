@@ -1,0 +1,57 @@
+<div class="editor-overlay" *ngIf="isOpen" (click)="close()">
+  <div class="editor-card" (click)="$event.stopPropagation()">
+    <div class="editor-header">
+      <h2>{{ mode === 'create' ? 'Ajouter un bloc' : 'Modifier un bloc' }}</h2>
+      <button type="button" class="editor-close" (click)="close()">Fermer</button>
+    </div>
+    <form (ngSubmit)="submit()" class="editor-form">
+      <div class="editor-row">
+        <label>Nom</label>
+        <input type="text" [(ngModel)]="form.name" name="name" required />
+      </div>
+      <div class="editor-row">
+        <label>Affichage</label>
+        <input type="text" [(ngModel)]="form.displayName" name="displayName" required />
+      </div>
+      <div class="editor-row">
+        <label>Materiau</label>
+        <input type="text" [(ngModel)]="form.material" name="material" required />
+      </div>
+      <div class="editor-row">
+        <label>Durabilite</label>
+        <input type="number" step="0.1" min="-1" [(ngModel)]="form.hardness" name="hardness" required />
+      </div>
+      <div class="editor-row">
+        <label>Resistance</label>
+        <input type="number" step="0.1" min="0" [(ngModel)]="form.resistance" name="resistance" required />
+      </div>
+      <div class="editor-row">
+        <label>Stack</label>
+        <input type="number" min="1" max="64" [(ngModel)]="form.stackSize" name="stackSize" required />
+      </div>
+      <div class="editor-row">
+        <label>Lumiere</label>
+        <input type="number" min="0" max="15" [(ngModel)]="form.emitLight" name="emitLight" required />
+      </div>
+      <div class="editor-row">
+        <label>Image</label>
+        <input type="file" accept="image/png,image/jpeg,image/webp" (change)="onFileSelected($event)" />
+      </div>
+      <div class="editor-row editor-check">
+        <label>Creusable</label>
+        <input type="checkbox" [(ngModel)]="form.diggable" name="diggable" />
+      </div>
+      <div class="editor-row editor-check">
+        <label>Transparent</label>
+        <input type="checkbox" [(ngModel)]="form.transparent" name="transparent" />
+      </div>
+      <p class="editor-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <div class="editor-actions">
+        <button type="button" class="editor-secondary" (click)="close()">Annuler</button>
+        <button type="submit" class="editor-primary" [disabled]="isSaving">
+          {{ isSaving ? 'En cours...' : 'Valider' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="login-overlay" *ngIf="isOpen" (click)="close()">
+  <mat-card class="login-card" appearance="outlined" (click)="$event.stopPropagation()">
+    <mat-card-header>
+      <img src="assets/Blockz.png" class="login-logo" alt="Blockz" />
+      <mat-card-title>Connexion</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <label for="username">Identifiant</label>
+        <input id="username" name="username" type="text" [(ngModel)]="username" />
+
+        <label for="password">Mot de passe</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" />
+
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Connexion...' : 'Se connecter' }}
+        </button>
+      </form>
+      <p class="status" *ngIf="message">{{ message }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

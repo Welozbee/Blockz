@@ -1,6 +1,77 @@
 <div class="header">
     <img src="assets/Blockz.png" style="height: 40px;margin: 10px;">
+    <div class="header-actions">
+        <button *ngIf="isLoggedIn" class="header-user-button" type="button" (click)="openLogoutConfirm()">
+            {{ displayName }}
+        </button>
+        <button *ngIf="!isLoggedIn" class="header-button" type="button" (click)="openLogin()">Connexion</button>
+    </div>
+</div>
+<div class="confirm-overlay" *ngIf="showLogoutConfirm" (click)="closeLogoutConfirm()">
+    <div class="confirm-card" (click)="$event.stopPropagation()">
+        <h3>Deconnexion</h3>
+        <p>Confirmer la deconnexion ?</p>
+        <div class="confirm-actions">
+            <button type="button" class="confirm-cancel" (click)="closeLogoutConfirm()">Annuler</button>
+            <button type="button" class="confirm-ok" (click)="confirmLogout()">Se deconnecter</button>
+        </div>
+    </div>
 </div>
 <div class="mainPage">
-    <app-blocks-list></app-blocks-list>
+    <app-login></app-login>
+    <app-block-editor (saved)="onBlockSaved()" (closed)="onEditorClosed()"></app-block-editor>
+    <div class="contentArea">
+        <div class="listArea">
+            <div class="filterBar">
+                <div class="filterGroup">
+                    <label>Recherche</label>
+                    <input type="text" [(ngModel)]="filterText" placeholder="Nom, affichage, materiau" />
+                </div>
+                <div class="filterGroup">
+                    <label>Creusable</label>
+                    <select [(ngModel)]="filterDiggable">
+                        <option value="all">Tous</option>
+                        <option value="yes">Oui</option>
+                        <option value="no">Non</option>
+                    </select>
+                </div>
+                <div class="filterGroup">
+                    <label>Transparent</label>
+                    <select [(ngModel)]="filterTransparent">
+                        <option value="all">Tous</option>
+                        <option value="yes">Oui</option>
+                        <option value="no">Non</option>
+                    </select>
+                </div>
+            </div>
+            <app-blocks-list
+                [selectedId]="selectedBlock?.id ?? null"
+                [filterText]="filterText"
+                [filterDiggable]="filterDiggable"
+                [filterTransparent]="filterTransparent"
+                (selected)="onBlockSelected($event)"
+            ></app-blocks-list>
+        </div>
+        <aside class="admin-panel" *ngIf="isAdmin">
+            <div class="admin-panel-title">Gestion</div>
+            <div class="admin-panel-info">
+                {{ selectedBlock ? 'Bloc selectionne' : 'Selectionner un bloc' }}
+            </div>
+            <button
+                type="button"
+                class="admin-action"
+                (click)="openCreateBlock()"
+            >
+                Ajouter
+            </button>
+            <button
+                type="button"
+                class="admin-action"
+                [disabled]="!selectedBlock"
+                (click)="openEditBlock()"
+            >
+                Modifier
+            </button>
+        </aside>
+    </div>
 </div>

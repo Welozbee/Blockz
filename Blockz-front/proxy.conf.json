@@ -1,0 +1,27 @@
+{
+  "/blocks": {
+    "target": "http://back-end:8000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/block": {
+    "target": "http://back-end:8000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/auth": {
+    "target": "http://back-end:8000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/me": {
+    "target": "http://back-end:8000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/static": {
+    "target": "http://back-end:8000",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

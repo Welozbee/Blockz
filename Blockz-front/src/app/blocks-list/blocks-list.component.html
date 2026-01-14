@@ -1,63 +1,67 @@
 <div id="mainBody">
-    <mat-card class="blockCard" appearance="outlined" *ngFor="let block of blocks">
-        <mat-card-header>
-            <mat-card-title style="color: gray;font-weight: bolder;">{{ block.displayName }}</mat-card-title>
-        </mat-card-header>
-
-        <!-- Image du bloc -->
-        <img mat-card-image src="assets/404.png" alt="{{ block.displayName }}" class="imageCard" />
-
-        <mat-card-content>
-            <!-- Affichage des propriétés du bloc -->
-            <div class="blockInfo">
-                <label>ID :</label>
-                <p>{{ block.id }}</p>
+    <mat-card
+        class="blockCard"
+        appearance="outlined"
+        *ngFor="let block of filteredBlocks"
+        (click)="selectBlock(block)"
+        [class.blockCardSelected]="block.id === selectedId"
+    >
+        <h3 class="blockTitle">{{ block.displayName }}</h3>
+        <div class="blockCardLayout">
+            <div class="blockMedia">
+                <img [src]="block.imagePath ? '/static/' + block.imagePath : 'assets/404.png'" alt="{{ block.displayName }}" class="imageCard" />
             </div>
+            <div class="blockContent">
+                <div class="blockInfo">
+                    <label>ID :</label>
+                    <p>{{ block.id }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Nom :</label>
-                <p>{{ block.name }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Nom :</label>
+                    <p>{{ block.name }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Nom Affiché :</label>
-                <p>{{ block.displayName }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Affichage :</label>
+                    <p>{{ block.displayName }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Durabilité (Hardness) :</label>
-                <p>{{ block.hardness }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Durabilite :</label>
+                    <p>{{ block.hardness }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Résistance :</label>
-                <p>{{ block.resistance }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Resist. :</label>
+                    <p>{{ block.resistance }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Taille du Stack :</label>
-                <p>{{ block.stackSize }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Stack :</label>
+                    <p>{{ block.stackSize }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Creusable (Diggable) :</label>
-                <p>{{ block.diggable ? 'Oui' : 'Non' }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Creusable :</label>
+                    <p>{{ block.diggable ? 'Oui' : 'Non' }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Matériau :</label>
-                <p>{{ block.material }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Materiau :</label>
+                    <p>{{ block.material }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Transparent :</label>
-                <p>{{ block.transparent ? 'Oui' : 'Non' }}</p>
-            </div>
+                <div class="blockInfo">
+                    <label>Transparent :</label>
+                    <p>{{ block.transparent ? 'Oui' : 'Non' }}</p>
+                </div>
 
-            <div class="blockInfo">
-                <label>Lumière Émise :</label>
-                <p>{{ block.emitLight }}</p>
+                <div class="blockInfo">
+                    <label>Lumiere :</label>
+                    <p>{{ block.emitLight }}</p>
+                </div>
             </div>
-        </mat-card-content>
+        </div>
     </mat-card>
 </div>

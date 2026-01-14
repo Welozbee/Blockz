@@ -1,7 +1,7 @@
 # ------- Base -------
 
 # Utiliser l'image officielle de Node.js comme image parente
-FROM node:22 AS base
+FROM node:20 AS base
 # Définir le répertoire de travail
 WORKDIR /app
 # Copier package.json
