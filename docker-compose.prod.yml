@@ -38,6 +38,7 @@ services:
     environment:
         - ENV=PROD
         - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DB=Blockz
     ports:
         - 8000:8000 # Port forwarding
     networks:
@@ -49,6 +50,6 @@ services:
       context: ./Blockz-front 
       target: prod
     ports:
-      - "80:80" # Port-forwarding du port hôte 80 vers le port 80 du container
+      - "8080:80" # Port-forwarding du port hôte 80 vers le port 80 du container
     networks:
       - blockz_network # Attache notre network au service

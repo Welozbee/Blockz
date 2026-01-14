@@ -13,6 +13,7 @@ services:
       target: python # Faire appel à la partie du Dockerfile qui lancera l'api
     environment:
         - ENV=DEV # Variable pour que le back sache quel env il doit lancer
+        - MYSQL_DB=Blockz
     ports:
         - 8000:8000 # Port Forwarding
     networks:
